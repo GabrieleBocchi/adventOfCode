@@ -1,0 +1,29 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ifstream in("input.txt");
+    int floor = 0;
+    int pos = 0;
+    int finalPos;
+    bool found = false;
+    char c;
+    while (in >> c) {
+        if(!found) {
+            pos++;
+        }
+        if (c == '(') {
+            floor++;
+        } else {
+            floor--;
+        }
+        if (floor == -1) {
+            finalPos = pos;
+            found = true;
+        }
+    }
+    cout << "Part 1: " << floor << endl;
+    cout << "Part 2: " << finalPos << endl;
+    return 0;
+}
