@@ -25,5 +25,6 @@ int main() {
     }
     cout << "Part 1: " << floor << endl;
     cout << "Part 2: " << finalPos << endl;
+    in.close();
     return 0;
 }
