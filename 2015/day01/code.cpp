@@ -1,16 +1,16 @@
-#include <iostream>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
 int main() {
     ifstream in("input.txt");
     int floor = 0;
     int pos = 0;
-    int finalPos;
+    int finalPos = 0;
     bool found = false;
     char c;
     while (in >> c) {
-        if(!found) {
+        if (!found) {
             pos++;
         }
         if (c == '(') {

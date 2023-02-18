@@ -1,7 +1,7 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
 #include <algorithm>
+#include <fstream>
+#include <iostream>
+#include <vector>
 using namespace std;
 
 struct coordinate {
@@ -10,8 +10,8 @@ struct coordinate {
 };
 
 bool alreadyPresent(vector<coordinate> visited, coordinate element) {
-    for(int i = 0; i < visited.size(); i++) {
-        if(visited[i].x == element.x && visited[i].y == element.y)
+    for (int i = 0; i < visited.size(); i++) {
+        if (visited[i].x == element.x && visited[i].y == element.y)
             return true;
     }
     return false;
@@ -19,51 +19,48 @@ bool alreadyPresent(vector<coordinate> visited, coordinate element) {
 
 int main() {
     ifstream in("input.txt");
-    int x = 0, y = 0, xSanta = 0, ySanta = 0, xRobo = 0, yRobo = 0, result1 = 1, result2 = 1;
+    int x = 0, y = 0, xSanta = 0, ySanta = 0, xRobo = 0, yRobo = 0, result1 = 1,
+        result2 = 1;
     bool santaTurn = true;
     vector<coordinate> visited1, visited2;
-    visited1.push_back({0,0});
-    visited2.push_back({0,0});
+    visited1.push_back({0, 0});
+    visited2.push_back({0, 0});
     char c;
-    while(in >> c) {
-        if(c == '^') {
+    while (in >> c) {
+        if (c == '^') {
             y++;
-            if(santaTurn)
+            if (santaTurn)
                 ySanta++;
             else
                 yRobo++;
-        }
-        else if(c == 'v') {
+        } else if (c == 'v') {
             y--;
-            if(santaTurn)
+            if (santaTurn)
                 ySanta--;
             else
                 yRobo--;
-        }
-        else if(c == '>') {
+        } else if (c == '>') {
             x++;
-            if(santaTurn)
+            if (santaTurn)
                 xSanta++;
             else
                 xRobo++;
-        }
-        else if(c == '<') {
+        } else if (c == '<') {
             x--;
-            if(santaTurn)
+            if (santaTurn)
                 xSanta--;
             else
                 xRobo--;
         }
-        if(!alreadyPresent(visited1, {x,y})) {
-            visited1.push_back({x,y});
+        if (!alreadyPresent(visited1, {x, y})) {
+            visited1.push_back({x, y});
             result1++;
         }
-        if(santaTurn && !alreadyPresent(visited2, {xSanta,ySanta})) {
-            visited2.push_back({xSanta,ySanta});
+        if (santaTurn && !alreadyPresent(visited2, {xSanta, ySanta})) {
+            visited2.push_back({xSanta, ySanta});
             result2++;
-        }
-        else if(!santaTurn && !alreadyPresent(visited2, {xRobo,yRobo})) {
-            visited2.push_back({xRobo,yRobo});
+        } else if (!santaTurn && !alreadyPresent(visited2, {xRobo, yRobo})) {
+            visited2.push_back({xRobo, yRobo});
             result2++;
         }
         santaTurn = !santaTurn;
